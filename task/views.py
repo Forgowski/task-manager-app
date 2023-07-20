@@ -1,6 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Task
 from .forms import TaskForm
+from django.http import JsonResponse
+
+
+def get_tasks_json(request):
+    tasks = Task.objects.all()
+    tasks_json = [{'title': task.title, 'deadline': task.deadline, 'completed': task.completed} for task in tasks]
+    return JsonResponse({'tasks': tasks_json})
+
+
+def calendar_view(request):
+    tasks = Task.objects.all()
+    return render(request, 'task/calendar.html', {'tasks': tasks})
 
 
 def task_list(request):

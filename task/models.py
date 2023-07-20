@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 class Task(models.Model):
@@ -6,6 +7,7 @@ class Task(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    deadline = models.DateField(default=datetime.date.today())
     completed = models.BooleanField(default=False)
 
     def __str__(self):

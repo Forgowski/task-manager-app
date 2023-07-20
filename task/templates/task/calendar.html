@@ -1,0 +1,64 @@
+<!-- calendar.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Calendar</title>
+    <!-- Add necessary CSS links, e.g., Bootstrap and FullCalendar -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.css" rel="stylesheet">
+
+    <style>
+        /* Add any custom styles here */
+        #calendar {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add necessary JavaScript libraries, e.g., jQuery and FullCalendar -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+
+    <script>
+        // JavaScript code to initialize FullCalendar and fetch tasks from Django view
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            $.ajax({
+                url: '/task/get_tasks_json/',  // Correct the URL
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var tasks = data.tasks;
+
+                    var events = tasks.map(function (task) {
+                        return {
+                            title: task.title,
+                            start: task.deadline,
+                            color: task.completed ? 'green' : 'red',
+                        };
+                    });
+
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        events: events,
+                        initialView: 'dayGridMonth',
+                    });
+
+                    calendar.render();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
