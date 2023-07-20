@@ -1,4 +1,9 @@
 <!-- W szablonie head dodaj linki do CSS Bootstrap -->
+{%  extends "task/base.html" %}
+{%  block navbar %}
+{% include "task/navbar.html" %}
+{% endblock %}
+{% block content %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
@@ -18,3 +23,4 @@
     </div>
     <input type="submit" class="custom-btn" value="Save">
 </form>
+{% endblock %}

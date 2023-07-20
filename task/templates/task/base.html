@@ -1,0 +1,22 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}Your Page Title{% endblock %}</title>
+  <!-- Add necessary CSS links, e.g., Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Include the navbar -->
+  {% block navbar %}{% endblock %}
+
+  <!-- Include the main content of the page -->
+  {% block content %}{% endblock %}
+
+  <!-- Add necessary JavaScript libraries, e.g., jQuery and FullCalendar -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.min.js"></script>
+</body>
+</html>
